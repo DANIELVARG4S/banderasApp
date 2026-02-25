@@ -15,19 +15,10 @@ export const HomeScreen = () => {
   const { isLoading, bandera } = useBanderas();
 
   const {  region } = useRegiones();
-  // console.log(regiones);
 
   if (isLoading) {
     return <FullScreenLoader />;
   }
-
-  // console.log(bandera.forEach(element => {
-  //   console.log(element);
-  // } ));
-  // ejemplo básico de paginación en frontend
-  // const pageSize = 20;
-  // const page = 2; // segunda página
-  // const paginated = allCountries.slice(page * pageSize, (page + 1) * pageSize);
 
   return (
     <CustomView  margin>

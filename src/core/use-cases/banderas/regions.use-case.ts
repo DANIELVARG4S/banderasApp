@@ -9,11 +9,6 @@ export const regionesUseCase = async ( fetch: HttpAdapter, region : string): Pro
         // Africa, Americas, Asia, Europe, Oceania
         const regions = await fetch.get<RegionAPI[]>(`/region/${region}`);
         
-        
-        // console.log(regions);
-        // return RegionesMapper.regionDBToEntity(regions);
-        // return regions.continents.map(RegionesMapper.regionDBToEntity);
-        // return RegionesMapper.regionesDBToEntity(regions.map(r => r.region));
         return regions.map(RegionesMapper.regionDBToEntity);
 
     }

@@ -15,3 +15,10 @@ export const apiBanderasDb = new AxiosAdapter({
 export const apiContinentesDb = new AxiosAdapter({
     baseUrl: "https://restcountries.com/v3.1/",
 });
+
+
+// https://restcountries.com/v3.1/name/{name}  
+
+export const apiPaisDb = new AxiosAdapter({
+    baseUrl: "https://restcountries.com/v3.1/",
+});

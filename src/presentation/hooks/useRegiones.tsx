@@ -15,8 +15,7 @@ export const useRegiones = () => {
     const initLoad = async() => { 
 
         const regionsPromise = await  regionesUseCase(apiContinentesDb, 'Americas');
-        // console.log('regionsPromise');
-        // console.log(regionsPromise);
+    
         const [
             region
         ] = await Promise.all([

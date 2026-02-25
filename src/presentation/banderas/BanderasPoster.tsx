@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { use } from 'react'
 import { BanderasEntity } from '../../core/entities/banderas.entity';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { RootStackParams } from '../navigator/Navigator';
+
 
 interface Props {
   banderas: BanderasEntity[];
@@ -9,17 +12,12 @@ interface Props {
 }
 
 export const BanderasPoster = ({ height = 220, banderas }: Props) => {
-
+  const navigation = useNavigation<NavigationProp<RootStackParams>>();
   return (
     <Pressable
-      onPress={() => 'Press'}
+      onPress={() => navigation.navigate('Details', { nameId: banderas.map(b => b.name).join(',') })}
       style={({ pressed }) => ({
-
-        // width,
         height,
-        // marginHorizontal: 50,
-        // paddingBottom: 20,
-        // paddingHorizontal: 10,
         opacity: pressed ? 0.9 : 1
       })
       }
@@ -27,22 +25,15 @@ export const BanderasPoster = ({ height = 220, banderas }: Props) => {
       <View style={style.imageContainer}>
         
         {
-          banderas.map( bandera => (
-            <Image 
-              key={bandera.name}
-              source={{uri: bandera.flag}}
-              // style={{width: 365, height: 165, marginLeft:20}}
-              style={style.image}
-              >
-              </Image>
-          ) )
-        },
-        {
-          banderas.map( bandera => (
-            <Text style={style.text}>
-              {bandera.name}
-            </Text>
-          ) )
+          banderas.map(bandera => (
+            <View key={bandera.name} style={{alignItems: 'center'}}>
+              <Image
+                source={{uri: bandera.flag}}
+                style={style.image}
+              />
+              <Text style={style.text}>{bandera.name}</Text>
+            </View>
+          ))
         }
       </View>
     </Pressable>
@@ -55,7 +46,7 @@ const style = StyleSheet.create({
     borderRadius: 18,
     width: 365, 
     height: 180, 
-    margin:10
+    margin:5
   },
   imageContainer:{
     // flex: 1,
